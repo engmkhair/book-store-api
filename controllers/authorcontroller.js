@@ -4,7 +4,11 @@ const { Author,validateCreateAuthor,validateUpdateAuthor } = require('../models/
 
 //get-post....
 const getAuthors=asyncHandler(async(req,res)=>{
-    const authorList=await Author.find() //.sort({firstName:-1}).select("firstName lastName -_id")
+    const { pageNumber }=req.query
+    const authorsPerPage=2
+    const authorList=await Author.find()
+                                 .skip((pageNumber -1 )*authorsPerPage) 
+                                 .limit(authorsPerPage) //.sort({firstName:-1}).select("firstName lastName -_id")
     res.status(200).json(authorList)
 })
 const getAuthorsById=asyncHandler(
@@ -27,7 +31,7 @@ const createAuthor=asyncHandler(async (req,res)=>{
             const author= new Author({
                 firstName:req.body.firstname,
                 lastName:req.body.lastname,
-                nathionality:req.body.nathionality
+                nationality:req.body.nationality
             })
             const result =await author.save()
              res.status(201).json(result)
@@ -46,7 +50,7 @@ const updateAuthor=asyncHandler(async(req,res)=>{
         $set:{
             firstName:req.body.firstname,
             lastName:req.body.lastname,
-            nathionality:req.body.nathionality
+            nationality:req.body.nationality
         }
     },{new:true})
     res.status(200).json(author)

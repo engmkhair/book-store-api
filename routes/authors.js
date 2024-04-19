@@ -8,7 +8,7 @@ const {verifyTokenAndAdmin}=require("../middleware/verifyToken")
 //     {id:1,
 //     firstName:"nasim",
 //     lastName:"ahmad",
-//     nathionality:"iraq",},
+//     nationality:"iraq",},
 // ]
 router.route("/")
          .get(getAuthors)

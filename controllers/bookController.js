@@ -4,6 +4,15 @@ const {Book,validateCreateBook,validateUpdateBook}=require('../models/Book')
 
 const getAllBooks=ascyncHandler(async(req,res)=>{
     const{minPrice,maxPrice}=req.query
+    //comparison query Operators
+    //eq (equal)
+    //ne (not equal)
+    //lt (less than)
+    //lte (less than and equal)
+    //gt (greater than)
+    //gte (greater than and equal)
+    //in (value exist in array)
+    //nin (value not exist in array)
     let books
     if(minPrice && maxPrice){
         books=await Book.find({price:{$gte:minPrice,$lte:maxPrice}})

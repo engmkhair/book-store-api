@@ -1,9 +1,9 @@
 const asyncHandler=require("express-async-handler")
 const bcrypt=require("bcryptjs")
 
-const dotenv=require("dotenv")
+
  const{User,validateRigesterUser,validateLoginUser,validateUpdateUser}=require("../models/user")
-//rgister
+//register
 /**
  * @desc...register new user
  * @route .../api/auth/register
